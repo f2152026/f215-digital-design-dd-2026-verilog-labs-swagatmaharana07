@@ -27,20 +27,12 @@ module rca64(
 
   wire [64:0] c;
   assign c[0] = cin;
-
   genvar i;
   generate
-    for (i = 0; i < 64; i = i + 1) begin : gen_fa
-      FA_Gate FA (
-        .a    (a[i]),
-        .b    (b[i]),
-        .cin  (c[i]),
-        .sum  (sum[i]),
-        .cout (c[i+1])
-      );
+      for (i = 0; i < 64; i = i + 1) begin : gen_fa
+      FA_Gate FA (.a(a[i]), .b(b[i]), .cin(c[i]), .sum(sum[i]), .cout(c[i+1]));
     end
-  endgenerate
-
+    endgenerate
   assign cout = c[64];
 
 endmodule
